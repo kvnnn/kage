@@ -79,7 +79,7 @@ GameObject:
   - 4: {fileID: 473860}
   - 114: {fileID: 11493906}
   m_Layer: 0
-  m_Name: Stage
+  m_Name: StageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
