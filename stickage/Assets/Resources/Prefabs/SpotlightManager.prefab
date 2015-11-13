@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &118880
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -11,6 +11,21 @@ GameObject:
   - 108: {fileID: 10838588}
   m_Layer: 0
   m_Name: Spotlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &136054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 486496}
+  m_Layer: 0
+  m_Name: BaseObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,8 +57,21 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 491254}
+  - {fileID: 486496}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &486496
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 491254}
+  m_Father: {fileID: 406876}
   m_RootOrder: 0
 --- !u!4 &491254
 Transform:
@@ -51,11 +79,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118880}
-  m_LocalRotation: {x: .134922341, y: .694115341, z: -.13492237, w: .694115222}
-  m_LocalPosition: {x: -12, y: 5, z: 0}
+  m_LocalRotation: {x: .134922341, y: -.694115341, z: .13492237, w: .694115222}
+  m_LocalPosition: {x: 29, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 406876}
+  m_Father: {fileID: 486496}
   m_RootOrder: 0
 --- !u!108 &10838588
 Light:
@@ -67,9 +95,9 @@ Light:
   serializedVersion: 6
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 4
-  m_Range: 50
-  m_SpotAngle: 50
+  m_Intensity: 3
+  m_Range: 60
+  m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -100,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89260a6b53db741bea498ad305b06b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainLightTransform: {fileID: 491254}
+  mainLightTransform: {fileID: 486496}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -143,6 +171,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.w
       value: .694115222
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

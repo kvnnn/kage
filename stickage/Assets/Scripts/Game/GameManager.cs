@@ -40,6 +40,6 @@ public class GameManager : GameMonoBehaviour
 
 	public void PrepareGame()
 	{
-
+		spotlightManager.StartLightCoroutine();
 	}
 }
