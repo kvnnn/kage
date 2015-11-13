@@ -19,7 +19,7 @@ public class GameManager : GameMonoBehaviour
 		stageManager.Init();
 
 		spotlightManager = InstantiateManager<SpotlightManager>(spotlightManager, spotlightPrefab);
-		spotlightManager.Init();
+		spotlightManager.Init(stageManager.GetObjects());
 
 		PrepareGame();
 	}

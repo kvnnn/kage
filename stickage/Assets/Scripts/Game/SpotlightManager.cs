@@ -7,8 +7,22 @@ public class SpotlightManager : GameMonoBehaviour
 	[SerializeField]
 	private Transform mainLightTransform;
 
-	public void Init()
+	private ShadowDetector shadowDetector_;
+	private ShadowDetector shadowDetector
 	{
+		get
+		{
+			if (shadowDetector_ == null)
+			{
+				shadowDetector_ = mainLightTransform.GetComponentInChildren<ShadowDetector>();
+			}
+			return shadowDetector_;
+		}
+	}
+
+	public void Init(List<BaseObject> objects)
+	{
+		shadowDetector.Init(objects);
 		DeactivateMainLight();
 	}
 
@@ -22,9 +36,22 @@ public class SpotlightManager : GameMonoBehaviour
 	{
 		mainLightTransform.gameObject.SetActive(false);
 	}
-#endregion
 
-#region Move Light
+	private void CheckShadowCollision()
+	{
+		foreach (BaseObject obj in shadowDetector.GetObjects())
+		{
+			foreach (BaseObject compareObj in shadowDetector.GetObjects())
+			{
+				if (obj == compareObj) {continue;}
+				if (HasShadowCollision(obj.GetShadowPointList(), compareObj.GetShadowPointList()))
+				{
+
+				}
+			}
+		}
+	}
+
 	public void StartLightCoroutine()
 	{
 		StartCoroutine(LightCoroutine());
@@ -33,12 +60,15 @@ public class SpotlightManager : GameMonoBehaviour
 	private IEnumerator LightCoroutine()
 	{
 		// TODO : stop when game finish
-		while(true)
+		while (true)
 		{
 			if (IsTouch())
 			{
 				ActivateMainLight();
 				mainLightTransform.RotateLocalEulerAnglesY(CalculateDegreeFromCenter() * -1);
+
+				shadowDetector.UpdateShadowData();
+				CheckShadowCollision();
 			}
 			else
 			{
@@ -48,6 +78,7 @@ public class SpotlightManager : GameMonoBehaviour
 			yield return null;
 		}
 	}
+#endregion
 
 	private float CalculateDegreeFromCenter()
 	{
@@ -58,5 +89,31 @@ public class SpotlightManager : GameMonoBehaviour
 		float rad = Mathf.Atan2(dy, dx);
 		return rad * Mathf.Rad2Deg;
 	}
-#endregion
+
+	private bool HasShadowCollision(List<Vector2> points, List<Vector2> comparePoints)
+	{
+		foreach (Vector2 point in points)
+		{
+			if (HasContainsPoint(comparePoints, point))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private bool HasContainsPoint(List<Vector2> points, Vector2 p)
+	{
+		int j = points.Count - 1;
+		bool inside = false;
+		for (int i = 0; i < points.Count; j = i++) {
+			if (((points[i].y <= p.y && p.y < points[j].y) ||
+					(points[j].y <= p.y && p.y < points[i].y)) &&
+			    (p.x < (points[j].x - points[i].x) * (p.y - points[i].y) / (points[j].y - points[i].y) + points[i].x))
+			{
+				inside = !inside;
+			}
+		}
+		return inside;
+	}
 }

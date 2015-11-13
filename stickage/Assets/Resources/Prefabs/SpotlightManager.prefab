@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 491254}
   - 108: {fileID: 10838588}
+  - 114: {fileID: 11493298}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -129,6 +130,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainLightTransform: {fileID: 486496}
+--- !u!114 &11493298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45ae071800f449f8b0e3364698fda62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
