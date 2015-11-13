@@ -5,27 +5,36 @@ using System.Collections.Generic;
 public class GameManager : GameMonoBehaviour
 {
 	private StageManager stageManager;
+	private SpotlightManager spotlightManager;
 
 	[SerializeField]
 	private GameObject stagePrefab;
+	[SerializeField]
+	private GameObject spotlightPrefab;
 
 #region Init
 	public void InitGame()
 	{
-		InitStage();
+		stageManager = InstantiateManager<StageManager>(stageManager, stagePrefab);
+		stageManager.Init();
+
+		spotlightManager = InstantiateManager<SpotlightManager>(spotlightManager, spotlightPrefab);
+		spotlightManager.Init();
+
 		PrepareGame();
 	}
 
-	private void InitStage()
+	private T InstantiateManager<T>(T manager, GameObject prefab)
+		where T : GameMonoBehaviour
 	{
-		if (stageManager == null)
+		if (manager == null)
 		{
-			GameObject stageGameObject = Instantiate(stagePrefab);
-			stageGameObject.transform.SetParent(transform);
-			stageManager = stageGameObject.GetComponent<StageManager>();
+			GameObject gameObject = Instantiate(prefab);
+			gameObject.transform.SetParent(transform);
+			manager = gameObject.GetComponent<T>();
 		}
 
-		stageManager.Init();
+		return manager;
 	}
 #endregion
 

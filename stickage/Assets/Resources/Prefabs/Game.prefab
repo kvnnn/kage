@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stagePrefab: {fileID: 135916, guid: 487042abdd4584bb1a4393f48011f861, type: 2}
+  spotlightPrefab: {fileID: 188538, guid: b3bb104d26cae412fa086fb0a488c99f, type: 2}
 --- !u!114 &11462164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,6 +189,10 @@ Prefab:
       propertyPath: stagePrefab
       value: 
       objectReference: {fileID: 135916, guid: 487042abdd4584bb1a4393f48011f861, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spotlightPrefab
+      value: 
+      objectReference: {fileID: 188538, guid: b3bb104d26cae412fa086fb0a488c99f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 107120}
