@@ -4,12 +4,7 @@ using System.Collections.Generic;
 
 /*
 	id 					: integer
-	sprite 			: text
-	point				: integer
-	hp					: integer
-	damage			: integer
-	cure				: integer
-	move				: integer
+	stage_id : integer
 */
 
 public class User
@@ -31,24 +26,14 @@ public class User
 #region UserData
 	public DataRow rawData {get; private set;}
 	public int id {get; private set;}
-	public string sprite {get; private set;}
-	public int point {get; private set;}
-	public int hp {get; private set;}
-	public int damage {get; private set;}
-	public int cure {get; private set;}
-	public int move {get; private set;}
+	public int stageId {get; private set;}
 
 	public User(DataRow rawData)
 	{
 		this.rawData = rawData;
 
 		id = (int)rawData["id"];
-		sprite = rawData["sprite"].ToString();
-		point = (int)rawData["point"];
-		hp = (int)rawData["hp"];
-		damage = (int)rawData["damage"];
-		cure = (int)rawData["cure"];
-		move = (int)rawData["move"];
+		stageId = (int)rawData["stage_id"];
 	}
 #endregion
 }
