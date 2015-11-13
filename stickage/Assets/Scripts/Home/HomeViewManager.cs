@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class HomeViewManager : ViewManager
 {
 
-	public void StartBtnClick()
+	public void StartButtonClick()
 	{
 		masterManager.ChangeView(MasterManager.View.Game);
 	}
