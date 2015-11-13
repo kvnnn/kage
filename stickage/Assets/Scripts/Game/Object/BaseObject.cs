@@ -6,6 +6,28 @@ public class BaseObject : GameMonoBehaviour
 {
 	private List<Vector2> shadowPointList = new List<Vector2>();
 
+	private Transform attractingTransform;
+	public static float ATTRACTING_POWER = 20f;
+
+	public void SetAttractingGameObject(Transform attractingTransform)
+	{
+		this.attractingTransform = attractingTransform;
+	}
+
+	void FixedUpdate()
+	{
+		if (attractingTransform == null) {return;}
+		Vector3 forceDirection = attractingTransform.position - GetComponent<Collider>().transform.position;
+		GetComponent<Collider>().GetComponent<Rigidbody>().AddForce(forceDirection.normalized * ATTRACTING_POWER * Time.fixedDeltaTime);
+	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		attractingTransform = null;
+		GetComponent<Collider>().GetComponent<Rigidbody>().Sleep();
+	}
+
+#region Shadow
 	public List<Vector2> GetShadowPointList()
 	{
 		return shadowPointList;
@@ -69,4 +91,5 @@ public class BaseObject : GameMonoBehaviour
 			}
 		}
 	}
+#endregion
 }

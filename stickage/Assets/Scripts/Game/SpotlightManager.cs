@@ -46,7 +46,14 @@ public class SpotlightManager : GameMonoBehaviour
 				if (obj == compareObj) {continue;}
 				if (HasShadowCollision(obj.GetShadowPointList(), compareObj.GetShadowPointList()))
 				{
-
+					if (obj.GetComponent<Collider>().bounds.size.magnitude > compareObj.GetComponent<Collider>().bounds.size.magnitude)
+					{
+						compareObj.SetAttractingGameObject(obj.transform);
+					}
+					else
+					{
+						obj.SetAttractingGameObject(compareObj.transform);
+					}
 				}
 			}
 		}
