@@ -22,7 +22,9 @@ public class SpotlightManager : GameMonoBehaviour
 	{
 		mainLightTransform.gameObject.SetActive(false);
 	}
+#endregion
 
+#region Move Light
 	public void StartLightCoroutine()
 	{
 		StartCoroutine(LightCoroutine());
@@ -35,11 +37,26 @@ public class SpotlightManager : GameMonoBehaviour
 		{
 			if (IsTouch())
 			{
-				UnityEngine.Debug.LogError(GetTouchPosition());
+				ActivateMainLight();
+				mainLightTransform.RotateLocalEulerAnglesY(CalculateDegreeFromCenter() * -1);
+			}
+			else
+			{
+				// DeactivateMainLight();
 			}
 
 			yield return null;
 		}
+	}
+
+	private float CalculateDegreeFromCenter()
+	{
+		var p1 = new Vector2(Screen.width/2, Screen.height/2);
+		var p2 = GetTouchPosition();
+		float dx = p2.x - p1.x;
+		float dy = p2.y - p1.y;
+		float rad = Mathf.Atan2(dy, dx);
+		return rad * Mathf.Rad2Deg;
 	}
 #endregion
 }
