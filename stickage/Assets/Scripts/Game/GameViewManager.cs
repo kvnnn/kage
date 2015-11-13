@@ -7,33 +7,32 @@ public class GameViewManager : ViewManager
 	[SerializeField]
 	private GameManager gameManager;
 
+	[SerializeField]
+	private Transform uiBaseTransform;
+
 	protected override void BeforeShow()
 	{
-
+		gameManager.InitGame();
+		InitUI();
 	}
 
-	protected override void OnShow()
+	private void InitUI()
 	{
 
 	}
 
-	protected override void AfterShow()
+	private T InstantiateUI<T>(GameObject prefab)
+		where T : BaseUIParts
 	{
+		T uiParts = uiBaseTransform.GetComponentInChildren<T>();
+		if (uiParts == null)
+		{
+			GameObject uiPartsGameObject = Instantiate(prefab);
+			uiPartsGameObject.transform.SetParent(uiBaseTransform);
+			uiParts = uiPartsGameObject.GetComponent<T>();
+		}
 
-	}
-
-	protected override void BeforeHide()
-	{
-
-	}
-
-	protected override void OnHide()
-	{
-
-	}
-
-	protected override void AfterHide()
-	{
-
+		uiParts.Init();
+		return uiParts;
 	}
 }
