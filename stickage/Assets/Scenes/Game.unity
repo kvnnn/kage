@@ -228,6 +228,7 @@ MonoBehaviour:
   viewBaseTransform: {fileID: 648212543}
   viewPrefabs:
   - {fileID: 107120, guid: 4f121b9a256234d68863560c7cd0f1c5, type: 2}
+  - {fileID: 107120, guid: 3190cb61733464854b92b20f553c2a2e, type: 2}
 --- !u!1 &1359669651
 GameObject:
   m_ObjectHideFlags: 0
