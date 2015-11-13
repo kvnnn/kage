@@ -17,14 +17,14 @@ public class BaseObject : GameMonoBehaviour
 	void FixedUpdate()
 	{
 		if (attractingTransform == null) {return;}
-		Vector3 forceDirection = attractingTransform.position - GetComponent<Collider>().transform.position;
-		GetComponent<Collider>().GetComponent<Rigidbody>().AddForce(forceDirection.normalized * ATTRACTING_POWER * Time.fixedDeltaTime);
+		Vector3 forceDirection = attractingTransform.position - transform.position;
+		rigidbody.AddForce(forceDirection.normalized * ATTRACTING_POWER * Time.fixedDeltaTime);
 	}
 
 	void OnCollisionEnter(Collision collision)
 	{
 		attractingTransform = null;
-		GetComponent<Collider>().GetComponent<Rigidbody>().Sleep();
+		rigidbody.Sleep();
 	}
 
 #region Shadow
